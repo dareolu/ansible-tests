@@ -1,0 +1,10 @@
+---
+# tasks file for test
+
+- name: Testing Variables
+  template:
+      src: "test.j2"
+      dest: "/home/vagrant/test"
+      owner: vagrant
+      group: vagrant
+      mode: 0777

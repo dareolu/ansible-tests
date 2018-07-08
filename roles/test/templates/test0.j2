@@ -1,0 +1,28 @@
+{% if 'workers' in group_names %}
+path.data: /data/elasticsearch23
+{% else %}
+#path.data:  /path/to/data2
+{% endif %}
+
+
+{% if 'masters' in group_names %}
+node.master: true
+node.data: false
+{% elif 'workers' in group_names %}
+node.data: true
+node.master: false
+node.client: false
+http.enables: false
+{% else %}
+node.client: true
+node.data: false
+{% endif %}
+
+
+#localhostname
+{{ ansible_hostname }}
+# array of hostnames from host_groups in Inventory
+["{{groups['all']|join(',')}}"]
+
+
+{{ ansible_distribution_release }}
